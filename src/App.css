@@ -1,0 +1,16 @@
+.App {
+    width: 600px;
+    margin: 20px auto;
+}
+.selectMemo {
+    display: flex;
+    border: 1px solid red;
+    /*justify-content: space-around;*/
+    align-items: center;
+    /*margin:5px;*/
+}
+.selectMemo div {
+   width: 250px;
+   margin:5px;
+    text-align: center;
+}
