@@ -7,6 +7,7 @@ import {UncontrolledOnOff1} from "./components/OnOff/UncontroledOnOff1";
 import UncontrolledAccordion from "./components/UncontrolledAccordion/UncontrolledAccordion";
 import {UncontrolledRating} from "./components/UncontrolledRating/UncontrolledRating";
 import Accordion from "./components/Accordion/Accordion";
+import {Clock} from "./components/Clock/Clock";
 
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
 
             <UncontrolledOnOff1Memo onChange={()=> console.log(false)}/>
             <UncontrolledOnOff1Memo onChange={setSwitchOn}/>{switchOn.toString()}
+            </div>
+            <div>
+                <Clock/>
             </div>
 
         </div>
