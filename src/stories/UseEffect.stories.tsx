@@ -38,7 +38,7 @@ export const SimpleExample = () => {
     </>
 }
 
-export const SetTimeoutExample = () => {
+export const SetIntervalExample = () => {
     const [fake, setFake] = useState(1)
     const [counter, setCounter] = useState(1);
     console.log('SetTimeoutExample')
@@ -51,11 +51,15 @@ export const SetTimeoutExample = () => {
     // },[counter])
 
     useEffect(() => {
-        setInterval(() => {
-            console.log('setInterval'+counter);
+        const intervalId = setInterval(() => {
+            // console.log('setInterval'+counter);
             // setCounter(counter + 1);
             setCounter(state=>state + 1);
         }, 1000)
+        return ()=>{
+            clearInterval(intervalId)
+        }
+
     }, [counter])
 
     // setTimeout(()=>{
@@ -70,3 +74,70 @@ export const SetTimeoutExample = () => {
     </>
 }
 
+export const ResetEffectExample = () => {
+
+    const [counter, setCounter] = useState(1);
+    console.log('ResetEffectExample'+ counter)
+
+    useEffect(() => {
+        console.log('effect occurred'+ counter)
+        return ()=>{
+            console.log('RESET EFFECT'+ counter)
+        }
+    }, [counter])
+
+    const increase = ()=>setCounter(counter+1)
+
+    return <>
+        Hello, counter: {counter}<button onClick={increase}>+1</button>
+    </>
+}
+
+export const KeyTrackerExample = () => {
+
+    const [text, setText] = useState('');
+    console.log('KeyTrackerExample'+ text)
+
+    useEffect(() => {
+
+        const handler =(e:KeyboardEvent)=>{
+            console.log(e.key);
+            setText(text+e.key)
+            // setText((state)=>state+e.key)
+        }
+
+       window.addEventListener('keypress',handler)
+            return ()=>{
+                window.removeEventListener('keypress',handler)
+            }
+    }, [text]);
+
+
+
+    return <>
+        Typed text: {text}
+    </>
+}
+export const SetTimeoutExample = () => {
+
+    const [text, setText] = useState('');
+    console.log('SetTimeoutExample')
+
+    useEffect(() => {
+        let i=1
+        const timeoutId=setTimeout(()=>{
+
+            console.log(`timeout expired ${i++}`)
+            setText(`3 seconds tyty ${i++}`)
+        },3000)
+            return ()=>{
+                clearTimeout(timeoutId)
+            }
+    }, [text]);
+
+
+
+    return <>
+        text: {text}
+    </>
+}
